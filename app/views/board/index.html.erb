@@ -29,9 +29,9 @@
 <!--<head>-->
 <!--    <script src="https://use.fontawesome.com/ce8dabd849.js"></script>-->
 <!--</head>-->
-    
+
 <body class="discovoer add-product">
-    
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-ct-primary" role="navigation-demo">
@@ -74,9 +74,9 @@
                     <li>
                         <a href="/users/sign_out">log_out</a>
                     </li>
-                   
+
                 </ul>
-                
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -85,17 +85,17 @@
 
 
         <div class="container">
-            
+
             <% @post.each do |post| %>
             <%= post.title %></br>
             <%= post.content %></br>
             <%= post.created_at %></br>
-            
+
             <% post.comments.each do |c| %>
                 <%= c.content %>
             <% end %>
-        
-        
+
+
         <form action="/board/<%= post.id %>/comment_create" method="POST">
             <div class="form-group">
             <input type="text" name="content" class="form-control" placeholder="제목">
@@ -103,8 +103,8 @@
             <button type="submit" class="btn btn-default">댓글등록</button>
             </form>
         <% end %>
-        
-        
+
+
         <form action="/board/create" method="POST">
         <div class="form-group">
         <label for="exampleInputEmail1">글제목</label>
@@ -116,10 +116,10 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        
-        
+
+
     </div>
-        
+
 
 
 
@@ -281,6 +281,7 @@
                     <h4>Side Widget Well</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
                 </div>
+              <p>황완식입니다.</p>
 
             </div>
 
