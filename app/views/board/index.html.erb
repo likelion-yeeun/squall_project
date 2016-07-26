@@ -87,7 +87,6 @@
         <div class="container">
 
             <% @post.each do |post| %>
-            <%= post.title %></br>
             <%= post.content %></br>
             <%= post.created_at %></br>
 
@@ -98,7 +97,7 @@
 
         <form action="/board/<%= post.id %>/comment_create" method="POST">
             <div class="form-group">
-            <input type="text" name="content" class="form-control" placeholder="제목">
+            <input type="text" name="content" class="form-control" placeholder="댓글">
             </div>
             <button type="submit" class="btn btn-default">댓글등록</button>
             </form>
@@ -107,18 +106,19 @@
 
         <form action="/board/create" method="POST">
         <div class="form-group">
-        <label for="exampleInputEmail1">글제목</label>
-        <input type="text" name="title" class="form-control" placeholder="제목">
-        </div>
-        <div class="form-group">
         <label for="exampleInputPassword1">내용</label>
         <textarea class="form-control" name="content"></textarea>
+        <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+        <%end%>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
         </form>
 
 
     </div>
+
+
 
 
 
