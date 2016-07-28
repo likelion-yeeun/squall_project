@@ -11,10 +11,13 @@ class BoardController < ApplicationController
     @post = Post.new(content: params[:content])
     if @post.save
       redirect_to "/"
+
     else
       flash[:notice] = "내용을 입력해주세요."
       redirect_to "/"
-    end
+   end
+
+
 
   end
 
