@@ -1,36 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<title>Paper Kit by Creative Tim</title>
 
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
+    <link href="bootstrap3/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/ct-paper.css" rel="stylesheet"/>
+    <link href="assets/css/demo.css" rel="stylesheet" />
 
-     <!--Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
 
-     <!--Custom CSS -->
-    <link href="css/blog-post.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>-->
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <!--<![endif]-->
-<script src="https://use.fontawesome.com/ce8dabd849.js"></script>
 </head>
 
 <!--<head>-->
 <!--    <script src="https://use.fontawesome.com/ce8dabd849.js"></script>-->
 <!--</head>-->
 
-<body class="discovoer add-product">
+<body class="add-product">
 
 
     <!-- Navigation -->
@@ -83,38 +78,98 @@
         <!-- /.container -->
     </nav>
 
+<div class="wrapper">
+        <div class="main">
+            <div class="section section-nude">
+
+
+
 
         <div class="container">
 
-            <% @post.each do |post| %>
-            <%= post.content %></br>
-            <%= post.created_at %></br>
-
-            <% post.comments.each do |c| %>
-                <%= c.content %>
-            <% end %>
 
 
-        <form action="/board/<%= post.id %>/comment_create" method="POST">
-            <div class="form-group">
-            <input type="text" name="content" class="form-control" placeholder="댓글">
-            </div>
-            <button type="submit" class="btn btn-default">댓글등록</button>
-            </form>
-        <% end %>
+
+        <div class="col-md-8 col-sm-7">
+        <form action="/board/create" method="post" enctype="multipart/form-data">
+
+          <div class="form-group">
+          <h5>What's on your mind? <span class="required">*</span></h5>
+          <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
+         <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
 
 
-        <form action="/board/create" method="POST">
-        <div class="form-group">
-        <label for="exampleInputPassword1">내용</label>
-        <textarea class="form-control" name="content"></textarea>
         <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
         <%end%>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+
+        <div class="row buttons-row">
+                  <div class="col-md-4 col-sm-4">
+                  <button type="submit" class="btn btn-primary btn-fill btn-block">Save & Publish </button>
+                  </div>
+        </div>
         </form>
 
+        <div class="wrapper demo-wrapper">
+            <div class="main">
+                <div class="section section-nude">
+                    <div class="container tim-container">
+                        <div class="tim-title">
+                            <h2>What is goin on now!</h2>
+                        </div>
+
+         <% @post.each do |post| %>
+          <div class="col-md-4 col-sm-6">
+            <div class="card-big-shadow">
+                <div class="card" data-radius="none">
+                    <div class="content">
+
+
+
+                        <!-- <h4 class="title"><a href="#">Card with an impressive shadow</a></h4> -->
+                        <p class="description"><%= post.content %></p>
+                        <h6 class="category"><%= post.created_at %></h6>
+                    </div>
+
+                    <% post.comments.each do |c| %>
+                        <%= c.content %>
+
+                        <% end %>
+
+                </div> <!-- end card -->
+            </div>
+        </div>
+        </div>
+
+
+
+
+        <div class="row">
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+    <form action="/board/<%= post.id %>/comment_create" method="POST">
+        <div class="form-group">
+        <input type="text" name="content" class="form-control" placeholder="댓글">
+        </div>
+        <button type="submit" class="btn btn-default">댓글등록</button>
+        </form>
+    <% end %>
+
+
+        </div>
+    </div>
+  </div>
 
     </div>
 
