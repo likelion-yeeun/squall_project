@@ -14,7 +14,12 @@
     <div class="col-xs-2 col-sm-2"></div>
      <div class="col-xs-8 col-sm-8">
       <h3>Log in</h3>
-      <p><%= link_to "페이스북으로 로그인", user_facebook_omniauth_authorize_path %></p>
+      <!-- <button href="#fakelink" class="btn btn-fill btn-primary">Primary</button> -->
+      <p><%= button_to "login with google", user_google_oauth2_omniauth_authorize_path, :class => "btn btn-danger" %></p>
+      <p><%= button_to "login with facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-fill btn-primary" %></p>
+
+
+
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
           <%= f.label :email %><br />
