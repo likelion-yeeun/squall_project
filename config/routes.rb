@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'board#index'
-
+  get 'board/index'
   post 'board/create'
   get 'board/new'
   get 'board/edit'

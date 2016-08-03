@@ -16,9 +16,6 @@ class BoardController < ApplicationController
       flash[:notice] = "내용을 입력해주세요."
       redirect_to "/"
    end
-
-
-
   end
 
   def new
@@ -31,7 +28,7 @@ class BoardController < ApplicationController
   end
 
   def comment_create
-    @comment = Comment.new(post_id: params[:post_id], content: params[:content])
+    @comment = Comment.new(post_id: params[:id_of_post], content: params[:content])
     @comment.save
     redirect_to :back
   end
