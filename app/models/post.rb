@@ -4,6 +4,6 @@ class Post < ActiveRecord::Base
     include SearchCop
 
     search_scope :search do
-    attributes :title, :content, :created_at
+    attributes :content, :created_at
   end
 end
