@@ -1,7 +1,9 @@
 
+<!doctype html>
+<html>
+<body style="background-color:#f4f3ef">
 <div style="container;margin-bottom:50px;" align="center">
   <div class="row" style = "margin-top: 20px;"align="center">
-
 
     <div class="col-xs-3 col-sm-2"></div>
     <div class="col-xs-12 col-sm-8">
@@ -22,20 +24,18 @@
         <div class="field">
           <%= f.email_field :email, autofocus: true, placeholder:"Email" %>
         </div>
-       <br>
-        <div class="field" >
+        <div style="display:inline" class="field" >
           <%= f.password_field :password, autocomplete: "off", placeholder:"Password" %><br>
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
         </div>
-
-        <div class="actions">
-          <%= f.submit "Sign in" %><a href = "/users/sign_up"> Sign up</a>
+        <div style="display:inline" class="actions">
+          <%= f.submit "Sign in" %>
         </div>
         <br>
-        <div class="social_login">
+        <div class="social_login"><hr>
           <!-- <button href="#fakelink" class="btn btn-fill btn-primary">Primary</button> -->
-          <p><%= button_to "Sign in with google", user_google_oauth2_omniauth_authorize_path, :class => "btn btn-danger" %></p>
+          <p><%= button_to "Sign in with google", user_google_oauth2_omniauth_authorize_path, :class => "btn btn-danger"%></p>
           <p><%= button_to "Sign in with facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-fill btn-primary" %></p>
         </div>
         <% if devise_mapping.rememberable? -%>
@@ -43,7 +43,9 @@
         <% end -%>
       <% end %>
 
+      <a href="/users/sign_up">sign up</a><br>
       <a href="/users/password/new">Forgot your password?</a>
+
       <!--/users/sign_up
           /users/password/new -->
 
@@ -55,3 +57,5 @@
   </div>
 </div>
 </div>
+</body>
+</html>
