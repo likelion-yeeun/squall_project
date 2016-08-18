@@ -5,13 +5,18 @@ class BoardController < ApplicationController
       redirect_to '/users/sign_in'
     end
 
-    @post = Post.all
+    @post = Post.all.reverse
   end
   def create
-    @post = Post.new(content: params[:content])
-    if @post.save
-      redirect_to "/"
+    post = Post.new(content: params[:content])
 
+    if post.save
+      uploader = ImageUploader.new
+      file = params[:pic]
+      uploader.store!(file)
+      post.image_url = uploader.url
+      post.save
+      redirect_to "/"
     else
       flash[:notice] = "내용을 입력해주세요."
       redirect_to "/"
@@ -37,6 +42,5 @@ class BoardController < ApplicationController
 
   def search_view
     @search_post = Post.search(params[:content])
-
   end
 end
