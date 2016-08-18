@@ -51,29 +51,42 @@
         <!-- /.container -->
   </nav>
 
-  <div class="wrapper">
-  	<div class="main">
-    	<div class="section section-nude">
-        <div class="container">
-          <div class="col-md-8 col-sm-7">
-            <!-- post_write -->
-					  <form action="/board/create" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-              <h5>What's on your mind? <span class="required">*</span></h5>
-              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
-              <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
+  <div class="wrapper demo-wrapper">
+          <div class="section section-nude-gray">
+              <div class="container container-tim">
 
-									<!-- 내용입력안했을시 -->
-					        <% if flash[:notice] %>
-					        <div class="notice"><%= flash[:notice] %></div>
-					        <%end%>
-						</div>
-      			<div class="row buttons-row">
-                <div class="col-md-4 col-sm-4">
-                <button type="submit" class="btn btn-primary btn-fill btn-block">Save & Publish </button>
-                </div>
-      			</div>
-        		</form>
+                <!-- post_write -->
+     <form action="/board/create" method="post" enctype="multipart/form-data">
+      <div class="section section-nude">
+          <div class="container tim-container">
+              <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                        <h3 class="text-center">What's on your mind? <span class="required">*</span></h3>
+                        <div class="media media-post">
+                            <a class="pull-left author" href="#">
+                                <div class="avatar">
+                                      <img class="media-object" alt="64x64" src="assets/img/banks.jpg">
+                                </div>
+                            </a>
+                            <div class="media-body">
+                                  <textarea name="content" class="form-control textarea-limited border-input" placeholder="Write some nice stuff or nothing..." rows="6" data-limit="300"></textarea>
+                                    <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
+
+                                    <!-- 내용입력안했을시 -->
+                                    <% if flash[:notice] %>
+                                    <div class="notice"><%= flash[:notice] %></div>
+                                    <%end%>
+
+                                   <div class="media-footer">
+                                         <button type="submit" class="btn btn-info btn-fill btn-wd pull-right">Post</button>
+                                   </div>
+                            </div>
+                        </div> <!-- end media-post -->
+                  </div>
+              </div> <!-- end row -->
+          </div>
+       </div>
+    </form>
             <!-- /.post_write -->
 
 						<!-- board -->
@@ -81,27 +94,62 @@
 	          	<div class="main">
 	            	<div class="section section-nude">
 	              	<div class="container tim-container">
-	                	<div class="tim-title">
-	                  	<h2>What is goin on now!</h2>
-	                  </div>
 
-                    <!-- post_card -->
-										<div class="group">
-						        	<div class="col-md-4 col-sm-6">
-                        <% @post.each do |post| %>
-						          	<div class="card-big-shadow">
-                          <div class="card" data-radius="none">
-						              	<div class="content">
-		                        	<p class="description"><%= post.content %></p>
-		                        	<h6 class="category"><%= post.created_at %></h6>
-		                    		</div>
-	                    			<div id="comment_<%= post.id %>">
-	                    			<% post.comments.each do |c| %>
-	                        	<%= c.content %></br>
-	                        	<% end %>
-	                    			</div>
-	                				</div>
-	            					</div>
+                    <div class="tim-title">
+                    </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="media-area">
+                                    <h3> What is goin on now!</h3>
+
+                                   <% @post.each do |post| %>
+                                    <div class="media">
+                                          <a class="pull-left" href="#">
+                                           <div class="avatar">
+                                                <img class="media-object" src="assets/img/new_logo.png" alt="..."/>
+                                           </div>
+                                          </a>
+                                          <div class="media-body">
+                                            <!-- <h5 class="media-heading">제목????</h5> -->
+                                            <div class="pull-right">
+                                                <h6 class="text-muted"><%= post.created_at %></h6>
+                                                <!-- <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a> -->
+                                            </div>
+                                            <p><%= post.content %></p>
+                                          </div>
+                                        </div>
+                                        <!-- 좋아요관련 -->
+                                          <!-- <div class="media-footer">
+                                              <a href="#" class="btn btn-danger btn-simple">
+                                                   <i class="ti-heart"></i> 243
+                                              </a>
+                                              <a href="#" class="btn btn-simple">
+                                                   <i class="ti-heart-broken"></i> 2
+                                              </a>
+                                              <a href="#" class="btn btn-simple">
+                                                   Follow &middot; 3
+                                              </a>
+                                          </div> -->
+
+
+                        <div class="media">
+
+                            <div class="media-body">
+                                <div class="pull-center">
+	                    		    	<div id="comment_<%= post.id %>">
+	                    		    	<% post.comments.each do |c| %>
+                                <a class="pull-left" href="#">
+                                    <div class="avatar">
+                                    <img class="media-object" alt="64x64" src="assets/img/chet_faker_2.jpg">
+                                    </div>
+                                </a>
+	                            	<%= c.content %>
+	                            	<% end %>
+	                    		    	</div>
+	                				     </div>
+                        </div>
+                      </div>
+
 
 										    <!-- comment_write -->
     										<div class="form-group">
@@ -120,7 +168,6 @@
 			</div>
 	  </div>
 	</div>
-  aaaaa
 	<!-- div 뭐가뭔지... -->
 </html>
 

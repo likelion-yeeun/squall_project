@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+
+<body class="add-product">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-ct-primary" role="navigation-demo">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Squall</a>
+        </div>
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <!--    <div class="container">-->
+            <!-- Brand and toggle get grouped for better mobile display -->
+    <!--        <div class="navbar-header">-->
+    <!--            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+    <!--                <span class="sr-only">Toggle navigation</span>-->
+    <!--                <span class="icon-bar"></span>-->
+    <!--                <span class="icon-bar"></span>-->
+    <!--                <span class="icon-bar"></span>-->
+    <!--            </button>-->
+    <!--            <a class="navbar-brand" href="#">Squall</a>-->
+    <!--        </div>-->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+             <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
+          <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="/search">Search</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="/users/sign_out">log_out</a>
+                    </li>
+                </ul>
+        </div>
+            <!-- /.navbar-collapse -->
+    </div>
+        <!-- /.container -->
+  </nav>
+
+  <div class="section section-nude-gray">
+      <div class="container container-tim">
+          <div class="tim-title" id="comments">
+
+
+
+
+  <div class="wrapper">
+  	<div class="main">
+    	<div class="section section-nude">
+        <div class="container">
+          <div class="col-md-8 col-sm-7">
+            <!-- post_write -->
+					  <form action="/board/create" method="post" enctype="multipart/form-data">
+
+                          <div class="row">
+                              <div class="col-md-5 col-sm-8">
+                                  <h4><small>Regular Image</small></h4>
+                                  <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail img-no-padding" style="max-width: 400px; max-height: 250px;">
+                                      <img src="assets/img/image_placeholder.jpg" alt="...">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 400px; max-height: 250px;"></div>
+                                    <div>
+                                      <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                                      <a href="#" class="btn btn-simple btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                    </div>
+                                  </div>
+                              </div>
+
+            <div class="form-group">
+              <h5>What's on your mind? <span class="required">*</span></h5>
+              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
+              <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
+
+									<!-- 내용입력안했을시 -->
+					        <% if flash[:notice] %>
+					        <div class="notice"><%= flash[:notice] %></div>
+					        <%end%>
+						</div>
+      			<div class="row buttons-row">
+                <div class="col-md-4 col-sm-4">
+                <button type="submit" class="btn btn-primary btn-fill btn-block">Save & Publish </button>
+                </div>
+      			</div>
+        		</form>
+            <!-- /.post_write -->
+
+
+
+            <div class="section section-nude">
+                <div class="container tim-container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                              <h3 class="text-center">What's on your mind? <span class="required">*</span></h3>
+                              <div class="media media-post">
+                                  <a class="pull-left author" href="#">
+                                      <div class="avatar">
+                                            <img class="media-object" alt="64x64" src="assets/img/banks.jpg">
+                                      </div>
+                                  </a>
+                                  <div class="media-body">
+                                  <textarea class="form-control textarea-limited border-input " placeholder="Write some nice stuff or nothing..." rows="6" data-limit="300"></textarea>
+                                  <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
+                                  </div>
+
+                                          			<!-- 내용입력안했을시 -->
+                                          		  <% if flash[:notice] %>
+                                          		  <div class="notice"><%= flash[:notice] %></div>
+                                          			  <%end%>
+
+                                  <div class="media-footer">
+                                  <button type="submit"class="btn btn-info btn-fill btn-wd pull-right">Post</a>
+                                  </div>
+                                  </div>
+                              </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="section section-nude-gray">
+                <div class="container container-tim">
+                    <div class="tim-title" id="comments">
+                        <h3>Comments Area</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="media-area">
+                                <h3>Comments &middot; 10</h3>
+                                <div class="media">
+                                      <a class="pull-left" href="#">
+                                       <div class="avatar">
+                                            <img class="media-object" src="assets/img/new_logo.png" alt="..."/>
+                                       </div>
+                                      </a>
+                                      <div class="media-body">
+                                        <h5 class="media-heading">Creative Tim</h5>
+                                        <div class="pull-right">
+                                            <h6 class="text-muted">Sep 11, 11:53 AM</h6>
+                                            <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a>
+
+                                        </div>
+                                        <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
+                                        <p> Don't forget, You're Awesome!</p>
+
+                                        <div class="media-footer">
+                                            <a href="#" class="btn btn-danger btn-simple">
+                                                 <i class="ti-heart"></i> 243
+                                            </a>
+                                            <a href="#" class="btn btn-simple">
+                                                 <i class="ti-heart-broken"></i> 2
+                                            </a>
+                                            <a href="#" class="btn btn-simple">
+                                                 Follow &middot; 3
+                                            </a>
+                                        </div>
+
+                                         <div class="media media-post">
+                                                 <a class="pull-left author" href="#">
+                                                  <div class="avatar">
+                                                        <img class="media-object" alt="64x64" src="assets/img/chet_faker_2.jpg">
+                                                  </div>
+                                              </a>
+                                              <div class="media-body">
+                                                    <textarea class="form-control" placeholder="Write a nice reply or go home..." rows="4"></textarea>
+                                                    <div class="media-footer">
+                                                         <a href="#" class="btn btn-info btn-fill pull-right">Reply</a>
+                                                    </div>
+                                              </div>
+                                         </div> <!-- end media-post -->
+                                      </div>
+                                </div> <!-- end media -->
+
+                                <!--  Comment                    -->
+                                <div class="media">
+                                  <a class="pull-left" href="#">
+                                      <div class="avatar">
+                                         <img class="media-object" alt="Tim Picture" src="assets/img/flume.jpg">
+                                      </div>
+                                  </a>
+                                  <div class="media-body">
+
+                                    <h5 class="media-heading">Flume</h5>
+                                    <div class="pull-right">
+                                        <h6 class="text-muted">Sep 11, 11:54 AM</h6>
+                                        <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a>
+
+                                    </div>
+
+                                     <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
+
+                                     <div class="media-footer">
+                                        <a href="#" class="btn btn-simple">
+                                             <i class="ti-heart"></i> 243
+                                        </a>
+                                        <a href="#" class="btn btn-primary btn-simple">
+                                             <i class="ti-heart-broken"></i> 2
+                                        </a>
+                                        <a href="#" class="btn btn-simple">
+                                             Follow &middot; 3
+                                        </a>
+                                     </div>
+                                     <div class="media">
+                                          <a class="pull-left" href="#">
+                                              <div class="avatar">
+                                                    <img class="media-object" alt="64x64" src="assets/img/chet_faker_2.jpg">
+                                              </div>
+                                          </a>
+                                          <div class="media-body">
+                                                <h5 class="media-heading">Chet Faker</h5>
+                                                <div class="pull-right">
+                                                    <h6 class="text-muted">Sep 11, 11:56 AM</h6>
+                                                    <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a>
+
+                                                </div>
+                                                <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
+                                                <p> Don't forget, You're Awesome!</p>
+
+                                                <div class="media-footer">
+                                                    <a href="#" class="btn btn-danger btn-simple">
+                                                         <i class="ti-heart"></i> 243
+                                                    </a>
+                                                    <a href="#" class="btn btn-simple">
+                                                         <i class="ti-heart-broken"></i> 2
+                                                    </a>
+                                                    <a href="#" class="btn btn-info btn-simple">
+                                                         Follow &middot; 3
+                                                    </a>
+                                                </div>
+                                          </div>
+                                      </div> <!-- end media -->
+                                  </div>
+                                </div> <!-- end media -->
+                                <div class="media">
+                                      <a class="pull-left" href="#">
+                                          <div class="avatar">
+                                                <img class="media-object" alt="64x64" src="assets/img/banks.jpg">
+                                          </div>
+                                      </a>
+                                      <div class="media-body">
+                                            <h5 class="media-heading">Banks</h5>
+                                            <div class="pull-right">
+                                                <h6 class="text-muted">Sep 11, 11:57 AM</h6>
+                                                <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a>
+
+                                            </div>
+                                            <p>Hello guys, nice to have you on the platform! There will be a lot of great stuff coming soon. We will keep you posted for the latest news.</p>
+                                            <p> Don't forget, You're Awesome!</p>
+
+                                            <div class="media-footer">
+                                                <a href="#" class="btn btn-simple">
+                                                     <i class="ti-heart"></i> 243
+                                                </a>
+                                                <a href="#" class="btn btn-simple">
+                                                     <i class="ti-heart-broken"></i> 2
+                                                </a>
+                                                <a href="#" class="btn btn-simple">
+                                                     Follow &middot; 3
+                                                </a>
+                                            </div>
+                                      </div>
+                                </div> <!-- end media -->
+                                <div class="pagination-area">
+                                    <ul class="pagination pagination-no-border">
+                                         <!--   color-classes: "pagination-blue", "pagination-azure", "pagination-orange", "pagination-red", "pagination-green", special-classes: "pagination-no-border"  -->
+                                          <li><a href="#">&laquo;</a></li>
+                                          <li class="active"><a href="#">1</a></li>
+                                          <li><a href="#">2</a></li>
+                                          <li><a href="#">3</a></li>
+                                          <li><a href="#">4</a></li>
+                                          <li><a href="#">5</a></li>
+                                          <li><a href="#">&raquo;</a></li>
+                                     </ul>
+                                </div>
+                            </div> <!-- end media-area -->
+                        </div> <!-- end col-md-8 -->
+                    </div> <!-- end row -->
+                </div>
+            </div>
+            <div class="section section-nude">
+                <div class="container tim-container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                              <h3 class="text-center">Post your comment</h3>
+                              <div class="media media-post">
+                                  <a class="pull-left author" href="#">
+                                      <div class="avatar">
+                                            <img class="media-object" alt="64x64" src="assets/img/banks.jpg">
+                                      </div>
+                                  </a>
+                                  <div class="media-body">
+                                        <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
+                                        <div class="media-footer">
+                                             <a href="#" class="btn btn-info btn-fill btn-wd pull-right">Post Comment</a>
+                                        </div>
+                                  </div>
+                              </div> <!-- end media-post -->
+
+                              <h3 class="text-center">Post your comment</h3>
+                              <div class="media media-post">
+                                  <form class="form">
+                                  <a class="pull-left author" href="#">
+                                      <div class="avatar">
+                                            <img class="media-object" alt="64x64" src="assets/img/chet_faker_2.jpg"/>
+                                      </div>
+                                  </a>
+                                  <div class="media-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <input type="email" class="form-control border-input" placeholder="Your Name"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                     <input type="email" class="form-control border-input" placeholder="Your email"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control border-input" placeholder="Write some nice stuff or nothing..." rows="6"></textarea>
+                                        <div class="media-footer">
+                                            <h6 class="text-muted">Sign in with</h6>
+                                            <a href="" class="btn btn-round btn-fill btn-icon btn-twitter">
+                                                  <i class="ti-twitter-alt"></i>
+                                            </a>
+                                            <a href="" class="btn btn-round btn-fill btn-icon btn-facebook">
+                                                  <i class="ti-facebook"></i>
+                                            </a>
+                                            <a href="" class="btn btn-round btn-fill btn-icon btn-google">
+                                                  <i class="ti-google"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-info btn-fill pull-right">Post Comment</a>
+                                        </div>
+                                  </div><!-- end media-body -->
+                                  </form>
+                              </div> <!-- end media-post -->
+                        </div>
+                    </div> <!-- end row -->
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- board -->
+	          <div class="wrapper demo-wrapper">
+	          	<div class="main">
+	            	<div class="section section-nude">
+	              	<div class="container tim-container">
+	                	<div class="tim-title">
+	                  	<h2>What is goin on now!</h2>
+	                  </div>
+
+                    <!-- post_card -->
+										<div class="row">
+						        	<div class="col-md-4 col-sm-6">
+                        <% @post.each do |post| %>
+						          	<div class="card-big-shadow">
+                          <div class="card" data-radius="none">
+						              	<div class="content">
+		                        	<p class="description"><%= post.content %></p>
+		                        	<h6 class="category"><%= post.created_at %></h6>
+		                    		</div>
+	                    			<div id="comment_<%= post.id %>">
+	                    			<% post.comments.each do |c| %>
+	                        	<%= c.content %></br>
+	                  	<% end %>
+	                    			</div>
+	                				</div>
+	            					</div>
+
+										    <!-- comment_write -->
+    										<div class="form-group">
+    						        	<textarea id="content_<%=post.id%>" type="text" name="content" class="form-control" row="1" placeholder="댓글"></textarea>
+    											<button value="<%=post.id %>" type="submit" class="btn btn-default comment_submit">댓글등록</button>
+    							    		<% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+	        			</div>
+	    			  </div>
+	  				</div>
+			    </div>
+				</div>
+			</div>
+	  </div>
+	</div>
+
+	<!-- div 뭐가뭔지... -->
+</html>
+
+<!-- comment ajax script-->
+<script>
+$(function() {
+  $(".comment_submit").click(function(){
+
+    post_id = this.value;
+    post_content = $("#content_" + post_id).val();
+
+    $.ajax({
+      method: "POST",
+      url: "/board/"+post_id+"/comment_create",
+      data: {    content: post_content,
+              id_of_post: post_id },
+		  dataType: "text",
+      success: function(){
+        $( "#comment_" + post_id ).append( "<p>" + post_content + "</p>");
+        $("#content_" + post_id).val('');
+      },
+			error:function(msg){
+        alert("댓글이 작성되지 않았습니다.");
+      }
+    })
+  });
+});
+</script>

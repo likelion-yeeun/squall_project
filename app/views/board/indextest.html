@@ -1,0 +1,252 @@
+<body>
+<nav class="navbar navbar-ct-danger navbar-fixed-top" role="navigation-demo" id="demo-navbar">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="http://www.creative-tim.com">
+           <div class="logo-container">
+                <div class="logo">
+                    <img src="assets/img/new_logo.png" alt="Creative Tim Logo">
+                </div>
+                <div class="brand">
+                    Creative Tim
+                </div>
+            </div>
+      </a>
+    </div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navigation-example-2">
+      <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a class="btn btn-danger btn-simple" href="presentation.html#components">Components</a>
+          </li>
+          <li>
+            <a class="btn btn-danger btn-simple" href="presentation.html#examples">Examples</a>
+          </li>
+          <li>
+            <a href="http://www.creative-tim.com/product/paper-kit-pro" class="btn btn-danger btn-fill"><i class="fa fa-shopping-cart"></i> Buy now</a>
+          </li>
+       </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-->
+</nav>
+
+
+<div class="wrapper demo-wrapper">
+        <div class="section section-nude-gray">
+            <div class="container container-tim">
+
+              <!-- post_write -->
+   <form action="/board/create" method="post" enctype="multipart/form-data">
+    <div class="section section-nude">
+        <div class="container tim-container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                      <h3 class="text-center">What's on your mind? <span class="required">*</span></h3>
+                      <div class="media media-post">
+                          <a class="pull-left author" href="#">
+                              <div class="avatar">
+                                    <img class="media-object" alt="64x64" src="assets/img/banks.jpg">
+                              </div>
+                          </a>
+                          <div class="media-body">
+                                <textarea name="content" class="form-control textarea-limited border-input" placeholder="Write some nice stuff or nothing..." rows="6" data-limit="300"></textarea>
+                                  <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
+
+                                  <!-- 내용입력안했을시 -->
+                                  <% if flash[:notice] %>
+                                  <div class="notice"><%= flash[:notice] %></div>
+                                  <%end%>
+
+                                 <div class="media-footer">
+                                       <button type="submit" class="btn btn-info btn-fill btn-wd pull-right">Post</button>
+                                 </div>
+                          </div>
+                      </div> <!-- end media-post -->
+                </div>
+            </div> <!-- end row -->
+        </div>
+     </div>
+  </form>
+
+
+
+
+
+
+            <div class="tim-title">
+            </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="media-area">
+                            <h3> What is goin on now!</h3>
+
+                           <% @post.each do |post| %>
+                            <div class="media">
+                                  <a class="pull-left" href="#">
+                                   <div class="avatar">
+                                        <img class="media-object" src="assets/img/new_logo.png" alt="..."/>
+                                   </div>
+                                  </a>
+                                  <div class="media-body">
+                                    <!-- <h5 class="media-heading">제목????</h5> -->
+                                    <div class="pull-right">
+                                        <h6 class="text-muted"><%= post.created_at %></h6>
+                                        <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a>
+                                    </div>
+                                    <p><%= post.content %></p>
+                                  </div>
+
+                                    <div class="media-footer">
+                                        <a href="#" class="btn btn-danger btn-simple">
+                                             <i class="ti-heart"></i> 243
+                                        </a>
+                                        <a href="#" class="btn btn-simple">
+                                             <i class="ti-heart-broken"></i> 2
+                                        </a>
+                                        <a href="#" class="btn btn-simple">
+                                             Follow &middot; 3
+                                        </a>
+                                    </div>
+
+                                     <div class="media media-post">
+                                             <a class="pull-left author" href="#">
+                                              <div class="avatar">
+                                                    <img class="media-object" alt="64x64" src="assets/img/chet_faker_2.jpg">
+                                              </div>
+                                          </a>
+                                          <div class="media-body">
+                                                <textarea  id="content_<%=post.id%>" name="content" class="form-control" placeholder="Write a nice reply or go home..." rows="2"></textarea>
+                                                <div class="media-footer">
+                                                     <!-- <a href="#" class="btn btn-info btn-fill pull-right">Reply</a> -->
+                                                     <button value="<%=post.id %>" type="submit" class="btn btn-info btn-fill pull-right">Reply</button>
+                                                </div>
+                                               <% end %>
+                                          </div>
+                                     </div> <!-- end media-post -->
+
+
+                                    <% post.comments.each do |c| %>
+                                     <div class="media-body" >
+
+                                           <!-- <h5 class="media-heading">Chet Faker</h5> -->
+                                           <div class="pull-right" id="comment_<%= post.id %>">
+                                               <h6 class="text-muted"><% c.created_at %></h6>
+                                               <!-- <a href="#" class="btn btn-info btn-simple pull-right "> <i class="fa fa-reply"></i> Reply</a> -->
+                                           </div>
+                                           <p><%= c.content %></p>
+                                           <% end %>
+
+
+                                           <div class="media-footer">
+                                               <a href="#" class="btn btn-danger btn-simple">
+                                                    <i class="ti-heart"></i> 243
+                                               </a>
+                                               <a href="#" class="btn btn-simple">
+                                                    <i class="ti-heart-broken"></i> 2
+                                               </a>
+                                               <a href="#" class="btn btn-info btn-simple">
+                                                    Follow &middot; 3
+                                               </a>
+                                           </div>
+                                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  </div>
+                            </div> <!-- end media -->
+
+
+                            <div class="pagination-area">
+                                <ul class="pagination pagination-no-border">
+                                     <!--   color-classes: "pagination-blue", "pagination-azure", "pagination-orange", "pagination-red", "pagination-green", special-classes: "pagination-no-border"  -->
+                                      <li><a href="#">&laquo;</a></li>
+                                      <li class="active"><a href="#">1</a></li>
+                                      <li><a href="#">2</a></li>
+                                      <li><a href="#">3</a></li>
+                                      <li><a href="#">4</a></li>
+                                      <li><a href="#">5</a></li>
+                                      <li><a href="#">&raquo;</a></li>
+                                 </ul>
+                            </div>
+                        </div> <!-- end media-area -->
+                    </div> <!-- end col-md-8 -->
+                </div> <!-- end row -->
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+<!-- comment ajax script-->
+<script>
+$(function() {
+  $(".comment_submit").click(function(){
+
+    post_id = this.value;
+    post_content = $("#content_" + post_id).val();
+
+    $.ajax({
+      method: "POST",
+      url: "/board/"+post_id+"/comment_create",
+      data: {    content: post_content,
+              id_of_post: post_id },
+		  dataType: "text",
+      success: function(){
+        $( "#comment_" + post_id ).append( "<p>" + post_content + "</p>");
+        $("#content_" + post_id).val('');
+      },
+			error:function(msg){
+        alert("댓글이 작성되지 않았습니다.");
+      }
+    })
+  });
+});
+</script>
+
+
+
+
+
+
+
+</body>
+<script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+
+<script src="bootstrap3/js/bootstrap.js" type="text/javascript"></script>
+
+<!--  Plugins -->
+<script src="assets/js/ct-paper-checkbox.js"></script>
+<script src="assets/js/ct-paper-radio.js"></script>
+<script src="assets/js/bootstrap-select.js"></script>
+<script src="assets/js/bootstrap-datepicker.js"></script>
+<script src="assets/js/ct-paper-bootstrapswitch.js"></script>
+<script src="assets/js/jquery.tagsinput.js"></script>
+<script src="assets/js/ct-paper.js"></script>
+</html>
