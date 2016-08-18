@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20160714113638) do
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image_url",  default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
