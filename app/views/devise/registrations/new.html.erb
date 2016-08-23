@@ -1,0 +1,51 @@
+<style>
+body {
+  background: url(<%= asset_path 'background.png' %>) no-repeat center center scroll;
+  background-size: cover;
+  background-color: beige;
+}
+body, table, div, p {font-family:'Giddyup Std'; color: black}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 253, 245) inset;
+}
+
+</style>
+
+<div style="container;margin-bottom: 50px;" align="center" id="white" class="white">
+  <div class="row" style = "margin-top: 70px;"align="center">
+  <h1>Sign up *</h1>
+  <br>
+  <br>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %>  <br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off" %>
+    </div>
+    <br>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <div class="actions">
+      <a href="/users/sign_up"><%= link_to image_tag('google.png'),user_google_oauth2_omniauth_authorize_path %></a>
+
+      <%= link_to image_tag('facebook.png'),user_facebook_omniauth_authorize_path %>
+
+    </div>
+  <% end %>
+
+</div>
+</div>

@@ -1,0 +1,101 @@
+<style>
+body {
+  background: url(<%= asset_path 'background.png' %>) no-repeat center center scroll;
+  background-size: auto;
+  background-color: beige;
+}
+body, table, div, p {font-family:'Giddyup Std'; color: black}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 253, 245) inset;
+}
+
+.login-button{
+     background: url(<%= asset_path 'background.png' %>) no-repeat center center scroll;
+
+  }*/
+
+.logo{
+  max-width: 60%;
+  height: auto;
+}
+</style>
+
+<div style="container;margin-bottom: 50px;" align="center" id="white" class="white">
+  <div class="row" style = "margin-top: 70px;"align="center">
+
+
+
+    <div class="col-xs-12 col-sm-8">
+    <%= image_tag "logo.gif", class: "logo"%>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-xs-2 col-sm-2"></div>
+     <div class="col-xs-8 col-sm-8">
+
+      <!-- <button href="#fakelink" class="btn btn-fill btn-primary">Primary</button> -->
+      <!-- <p><%= button_to "login with google", user_google_oauth2_omniauth_authorize_path,    :class => "btn btn-danger" %></p> -->
+      <br>
+      <br>
+      <br>
+      <br>
+
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <!-- 이메일 주소 입력 -->
+        <div class="field">
+          <%= f.label :email %> &nbsp; &nbsp; &nbsp; &nbsp;
+          <%= f.email_field :email, autofocus: true %>
+        </div>
+       <br>
+
+       <!-- 비밀번호 입력 -->
+        <div class="field" >
+          <%= f.label :password %>&nbsp;
+          <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+
+       <br>
+       <!-- 아이디 기억하도록 체크 -->
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+      <br>
+
+
+        <!-- 로그인 기능 -->
+
+        <div class="actions">
+
+        <%= f.submit "Login", class: "login-button"%>
+
+        </div>
+
+      <% end %>
+
+  <br>
+
+      <a href="/users/sign_up"><%= link_to image_tag('signup.png'),user_google_oauth2_omniauth_authorize_path , class: "pictures" %></a>
+
+      <br>
+      <a href="/users/password/new">Forgot your password?</a>
+      <br>
+      <br>
+      <a href="/users/sign_up"><%= link_to image_tag('google.png'),user_google_oauth2_omniauth_authorize_path %></a>
+
+      <%= link_to image_tag('facebook.png'),user_facebook_omniauth_authorize_path %>
+
+    </div>
+
+    <!-- <p><%= image_tag "facebook.png"%></p> -->
+    <!-- <p><%= image_tag "google.png"%><p> -->
+    <br>
+    <br>
+  </div>
+  </div>
+</div>

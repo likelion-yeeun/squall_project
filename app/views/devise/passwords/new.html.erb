@@ -1,0 +1,35 @@
+<style>
+body {
+  background: url(<%= asset_path 'background.png' %>) no-repeat center center scroll;
+  background-size: cover;
+  background-color: beige;
+}
+body, table, div, p {font-family:'Giddyup Std'; color: black}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px rgb(255, 253, 245) inset;
+}
+</style>
+
+<div style="container;margin-bottom: 50px;" align="center" id="white" class="white">
+  <div class="row" style = "margin-top: 70px;"align="center">
+
+<h2>Forgot your password *</h2>
+
+<br>
+<br>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+</div>
