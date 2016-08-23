@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>간단한 지도 표시하기</title>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=WTuie0gSBLo6QOTObNIW"></script>
+
 </head>
 <body>
-<div id="map" style="width:100%;height:400px;"></div>
 
  <div class="container" background>
- 
+
  <button name="where" onclick="findme()">Try It</button>
-    
+
  <form action="/board/create" method="POST" style="margin_top:20px" name="fr" onsubmit="return check()">
 
  <div class="form-group">
@@ -33,35 +28,35 @@
  </div>
 
  <button type="submit" class="btn btn-default">Submit</button>
-    
+
  </form>
-    
+
     <div class="container" >
      <% @post.each do |post| %>
          <%= post.title %></br>
          <%= post.content %></br>
          <%= post.created_at %></br>
-        
-         
+
+
         <button data-toggle="collapse" data-target="#demo<%= post.id %>">Collapsible</button>
-        
+
         <div id="demo<%= post.id %>" class="collapse">
              <% post.comments.each do |c| %>
-                <%= c.content %>         
+                <%= c.content %>
              <% end %>
         </div>
-         
+
          <form action="/board/<%= post.id %>/comment_create" method="POST" >
              <div class="form-group">
                  <input type="text" name="content" class="form-control" placeholder="제목">
              </div>
-             
+
              <button type="submit" class="btn btn-default">Submit</button>
          </form>
-         
+
          <hr>
       <% end %>
-        
+
     </div>
 </div>
 
@@ -172,7 +167,7 @@ function check() {
         alert("너무 멀어");
          return false;
   }
-    else 
+    else
       return true;
 }
 

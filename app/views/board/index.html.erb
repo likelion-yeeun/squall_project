@@ -61,11 +61,12 @@
               <%= flash[:notice] %><%end%>
             </div>
             <!-- post_write -->
-					  <form action="/board/create" method="post" enctype="multipart/form-data">
+					  <form action="/board/create" method="post" enctype="multipart/form-data" onsubmit="return check()" name="fr">
             <div class="form-group">
               <h5>What's on your mind? <span class="required">*</span></h5>
-              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" >
-              </textarea>
+              <div id="map" style="width:100%;height:400px;"></div>
+
+              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
 
                 <small><h5><span id="textarea-limited-message" class="pull-right">300 characters left</span></h5></small>
                 <div>
@@ -83,6 +84,7 @@
             </div>
       			<div class="row buttons-row">
                 <div class="col-md-4 col-sm-4">
+
                 <button type="submit" class="btn btn-primary btn-fill btn-block">Save & Publish </button>
                 </div>
       			</div>
@@ -112,11 +114,19 @@
                               <!-- <% end %> -->
 		                        	<h6 class="category"><%= p.created_at %></h6>
 		                    		</div>
-	                    			<div id="comment_<%= p.id %>">
+
+                            <button data-toggle="collapse" data-target="#comment_<%= p.id %>">Collapsible</button>
+                            <div id="comment_<%= p.id %>" class="collapse">
+                                    <% p.comments.each do |c| %>
+                                    <%= c.content %>
+                                    <% end %>
+                            </div>
+
+	                    			<!-- <div id="comment_<%= p.id %>">
 	                    			<% p.comments.each do |c| %>
 	                        	<%= c.content %></br>
 	                        	<% end %>
-	                    			</div>
+	                    			</div> -->
 	                				</div>
 	            					</div>
 
@@ -164,4 +174,116 @@ $(function() {
     })
   });
 });
+</script>
+
+<script>
+function getDistanceFromLatLonInKm(lat1,lng1,lat2,lng2) {
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lng2-lng1);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c; // Distance in km
+    return d;
+}
+var distance = -1;
+
+
+
+var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(37.5666805, 126.9784147),
+    zoom: 5,
+    mapTypeId: naver.maps.MapTypeId.NORMAL
+});
+
+var infowindow = new naver.maps.InfoWindow();
+
+function onSuccessGeolocation(position) {
+    var location = new naver.maps.LatLng(position.coords.latitude,
+                                         position.coords.longitude);
+
+    map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+    map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+
+    infowindow.setContent('<div style="padding:20px;">' +
+        'latitude: '+ location.lat() +'<br />' +
+        'longitude: '+ location.lng() +'</div>');
+
+    distance = getDistanceFromLatLonInKm(37.516364, 127.075958, position.coords.latitude, position.coords.longitude);
+
+    infowindow.open(map, location);
+}
+
+function onErrorGeolocation() {
+    var center = map.getCenter();
+
+    infowindow.setContent('<div style="padding:20px;">' +
+        '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
+
+    infowindow.open(map, center);
+}
+
+$(window).on("load", function() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+    } else {
+        var center = map.getCenter();
+
+        infowindow.setContent('<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5>'+ "latitude: "+ center.lat() +"<br />longitude: "+ center.lng() +'</div>');
+        infowindow.open(map, center);
+    }
+});
+
+var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(37.516364, 127.075958),
+    zoom: 10
+});
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.516364, 127.075958),
+    map: map
+});
+
+
+var circle = new naver.maps.Circle({
+    map: map,
+    center: GREEN_FACTORY,
+    radius: 500,
+    strokeColor: 'yellowgreen',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    fillColor: 'yellowgreen',
+    fillOpacity: 0.3
+});
+
+
+function check() {
+    if(fr.content.value == "") {
+        alert("내용을 입력해 주세요.");
+        fr.content.focus();
+        return false;
+  }
+    else if(distance < 0){
+        alert("지금 어디있어?");
+        where.focus();
+        return false;
+  }
+    else if(distance > 1){
+        alert("너무 멀어");
+         return false;
+  }
+    else
+      return true;
+}
+
+$(document).on('click','.collapse.in',function(e) {
+    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        $(this).collapse('hide');
+    }
+});
+
 </script>
