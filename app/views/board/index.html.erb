@@ -56,18 +56,18 @@
     	<div class="section section-nude">
         <div class="container">
           <div class="col-md-8 col-sm-7">
+            <div class="notice">
+              <% if flash[:notice] %>
+              <%= flash[:notice] %><%end%>
+            </div>
             <!-- post_write -->
 					  <form action="/board/create" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <h5>What's on your mind? <span class="required">*</span></h5>
               <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
               <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
-
-									<!-- 내용입력안했을시 -->
-					        <% if flash[:notice] %>
-					        <div class="notice"><%= flash[:notice] %></div>
-					        <%end%>
-						</div>
+              <input type="file" name="pic" accept="image/*">
+            </div>
       			<div class="row buttons-row">
                 <div class="col-md-4 col-sm-4">
                 <button type="submit" class="btn btn-primary btn-fill btn-block">Save & Publish </button>
@@ -88,15 +88,20 @@
                     <!-- post_card -->
 										<div class="group">
 						        	<div class="col-md-4 col-sm-6">
-                        <% @post.each do |post| %>
+                        <% @post.each do |p| %>
 						          	<div class="card-big-shadow">
                           <div class="card" data-radius="none">
 						              	<div class="content">
-		                        	<p class="description"><%= post.content %></p>
-		                        	<h6 class="category"><%= post.created_at %></h6>
+		                        	<p class="description"><%= p.content %></p>
+
+                              <% unless p.image_url.nil? %>
+                              <img src="<%= p.image_url %>">
+                              <% end %>
+
+                              <h6 class="category"><%= p.created_at %></h6>
 		                    		</div>
-	                    			<div id="comment_<%= post.id %>">
-	                    			<% post.comments.each do |c| %>
+	                    			<div id="comment_<%= p.id %>">
+	                    			<% p.comments.each do |c| %>
 	                        	<%= c.content %></br>
 	                        	<% end %>
 	                    			</div>
@@ -105,8 +110,8 @@
 
 										    <!-- comment_write -->
     										<div class="form-group">
-    						        	<textarea id="content_<%=post.id%>" type="text" name="content" class="form-control" row="1" placeholder="댓글"></textarea>
-    											<button value="<%=post.id %>" type="submit" class="btn btn-default comment_submit">댓글등록</button>
+    						        	<textarea id="content_<%=p.id%>" type="text" name="content" class="form-control" row="1" placeholder="댓글"></textarea>
+    											<button value="<%=p.id %>" type="submit" class="btn btn-default comment_submit">댓글등록</button>
     							    		<% end %>
                         </div>
                       </div>

@@ -37,6 +37,7 @@
           <!-- <button href="#fakelink" class="btn btn-fill btn-primary">Primary</button> -->
           <p><%= button_to "Sign in with google", user_google_oauth2_omniauth_authorize_path, :class => "btn btn-danger"%></p>
           <p><%= button_to "Sign in with facebook", user_facebook_omniauth_authorize_path, :class => "btn btn-fill btn-primary" %></p>
+
         </div>
         <% if devise_mapping.rememberable? -%>
 
