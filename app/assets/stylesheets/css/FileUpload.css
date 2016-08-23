@@ -1,0 +1,7 @@
+#output {
+  position: relative;
+  bottom: 0px;
+  width: 100px !important;
+  height: 100px !important;
+  border-style:none;
+}

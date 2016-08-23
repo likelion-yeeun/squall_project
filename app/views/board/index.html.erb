@@ -64,9 +64,22 @@
 					  <form action="/board/create" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <h5>What's on your mind? <span class="required">*</span></h5>
-              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" ></textarea>
-              <h5><small><span id="textarea-limited-message" class="pull-right">300 characters left</span></small></h5>
-              <input type="file" name="pic" accept="image/*">
+              <textarea name="content" class="form-control textarea-limited border-input" placeholder="This is a textarea limited to 300 characters." rows="10", data-limit="300" >
+              </textarea>
+
+                <small><h5><span id="textarea-limited-message" class="pull-right">300 characters left</span></h5></small>
+                <div>
+                  <label style="cursor:pointer" for="upload-photo">Photo...</label>
+                  <input type="file" name="pic" id="upload-photo" accept="image/*" class="hidden" onchange="loadFile(event)"/>
+                </div>
+                <img id="output" />
+                <script>
+                  var loadFile = function(event) {
+                  var output = document.getElementById('output');
+                  output.src = URL.createObjectURL(event.target.files[0]);
+                  };
+                </script>
+              <!-- <input type="file" name="pic" accept="image/*"> -->
             </div>
       			<div class="row buttons-row">
                 <div class="col-md-4 col-sm-4">
