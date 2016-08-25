@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
-
+<head>
+    <script src="https://use.fontawesome.com/ce8dabd849.js"></script>
+</head>
 <body class="add-product">
 
   <!-- Navigation -->
@@ -61,7 +63,7 @@
           <div class="container tim-container">
               <div class="row">
                   <div class="col-md-8 col-md-offset-2">
-                        <h3 class="text-center">What's on your mind? <span class="required">*</span></h3>
+                        <h3 class="text-center">What's on your mind? 실시간 게시글 <span class="required">*</span></h3>
                         <div class="media media-post">
                             <a class="pull-left author" href="#">
                                 <div class="avatar">
@@ -77,8 +79,19 @@
                                     <div class="notice"><%= flash[:notice] %></div>
                                     <%end%>
 
+
+                                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;">
+                                        <% image_tag "/assets/img/image_placeholder.jpg" %>
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail img-no-padding" style="max-width: 370px; max-height: 250px;"></div>
+                                        <div>
+                                        <span class="btn btn-default btn-file "><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="pic" accept="image/*" required>
+                                      </div>
+                                   </div>
+
                                    <div class="media-footer">
-                                         <button type="submit" class="btn btn-info btn-fill btn-wd pull-right">Post</button>
+                                         <button type="submit" class="btn btn-info btn-fill btn-wd col-md-4">Post</button>
                                    </div>
                             </div>
                         </div> <!-- end media-post -->
@@ -87,6 +100,11 @@
           </div>
        </div>
     </form>
+
+
+
+
+
             <!-- /.post_write -->
 
 						<!-- board -->
@@ -100,9 +118,16 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="media-area">
-                                    <h3> What is goin on now!</h3>
+                                    <h3> What is goin on now! 실시간 게시글</h3>
 
                                    <% @post.each do |post| %>
+
+                                   <div class="col-md-4 column">
+                                         <div class="image">
+                                           <div style="background-image: url('<%= post.image_url %>'); background-size: 100%; background-position: center; background-repeat: no-repeat;width: 100%;height: 300px; " /></div>
+                                          </div>
+                                   </div>
+
                                     <div class="media">
                                           <a class="pull-left" href="#">
                                            <div class="avatar">
@@ -117,7 +142,10 @@
                                             </div>
                                             <p><%= post.content %></p>
                                           </div>
+
                                         </div>
+
+
                                         <!-- 좋아요관련 -->
                                           <!-- <div class="media-footer">
                                               <a href="#" class="btn btn-danger btn-simple">
@@ -130,6 +158,10 @@
                                                    Follow &middot; 3
                                               </a>
                                           </div> -->
+
+
+
+
 
 
                         <div class="media">

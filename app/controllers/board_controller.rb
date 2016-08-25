@@ -14,8 +14,10 @@ class BoardController < ApplicationController
       uploader = ImageUploader.new
       file = params[:pic]
       uploader.store!(file)
+
       post.image_url = uploader.url
       post.save
+      
       redirect_to "/"
     else
       flash[:notice] = "내용을 입력해주세요."
