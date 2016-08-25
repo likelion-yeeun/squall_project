@@ -245,7 +245,13 @@ var map = new naver.maps.Map('map', {
 
 var marker = new naver.maps.Marker({
     position: new naver.maps.LatLng(37.516364, 127.075958),
-    map: map
+    map: map,
+    <!-- 이미지 마커 삽입 -->
+    icon: {
+    	url: 'http://postfiles8.naver.net/20160825_295/yeeun316_1472119036970qd46J_PNG/likelion.png?type=w1',
+	size: new naver.maps.Size(46, 100),
+	scaledSize: new naver.maps.Size(46, 100)
+    }
 });
 
 
